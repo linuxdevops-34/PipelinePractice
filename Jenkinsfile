@@ -6,7 +6,7 @@ pipeline{
     stages{
         stage("Git Checkout"){
             steps{
-                git credentialsId: 'github', url: 'https://github.com/Mounika475/game-of-life.git'
+                git credentialsId: 'github', url: 'https://github.com/devopsarchitecture/SampleMavenBuild.git'
             }
         }
         stage("Build"){
