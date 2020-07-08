@@ -1,28 +1,20 @@
-pipeline {
-  agent any
-  stages {
-    stage('build') {
-      parallel {
-        stage('build') {
-          steps {
-            sh 'echo \'i am building a code here\''
-          }
+pipeline{
+    agent any
+       tools {
+          maven 'Maven1'
+             }
+    stages{
+        stage("Git Checkout"){
+            steps{
+                git credentialsId: 'github', url: 'https://github.com/Mounika475/game-of-life.git'
+            }
         }
-
-        stage('Test') {
-          steps {
-            echo 'testing here'
-          }
+        stage("Build"){
+            steps{
+                sh "clean mvn package"
+            }
         }
-
-      }
     }
-
-    stage('deploy') {
-      steps {
-        echo 'I am deploying code here'
-      }
-    }
-
-  }
+  
 }
+      
